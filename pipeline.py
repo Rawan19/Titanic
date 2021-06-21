@@ -6,7 +6,10 @@ import encode
 from sklearn.svm import SVC
 
 def fill_nulls(dataframe):
-        pass
+	dataframe['Age'].fillna(dataframe['Age'].mean(),inplace=True)
+	dataframe['Fare'].fillna(dataframe['Fare'].mean(),inplace=True)
+	return dataframe
+
 
 
 def one_hot_encode(df):
