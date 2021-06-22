@@ -14,7 +14,12 @@ def fill_nulls(dataframe):
 
 
 def one_hot_encode(df):
-	pass
+    ohe_feats = df.select_dtypes(include=['categorical']).columns
+    for f in ohe_feats:
+        df_all_dummy = pd.get_dummies(df[f], prefix=f)
+        df = df.drop([f], axis=1)
+        df = pd.concat((df, df_all_dummy), axis=1)
+        return df
 
 
 
